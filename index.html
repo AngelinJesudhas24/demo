@@ -39,6 +39,7 @@ body{
     color:white;
     z-index:9999;
     overflow:hidden;
+    cursor:pointer; /* make intro clickable */
 }
 
 .gift{
@@ -184,9 +185,13 @@ button{
 
 <script>
 /* INTRO */
-setTimeout(()=>{
-    document.getElementById("intro").style.display="none";
-},3000);
+const intro=document.getElementById("intro");
+const gift=document.querySelector(".gift");
+
+// Hide intro when clicking the gift
+gift.addEventListener("click", ()=>{
+    intro.style.display="none";
+});
 
 /* HEARTS */
 function createHeart(target=document.body){
@@ -201,7 +206,6 @@ function createHeart(target=document.body){
 }
 
 // Hearts on intro page
-const intro=document.getElementById("intro");
 setInterval(()=>createHeart(intro),250);
 
 // Hearts on main page
@@ -229,7 +233,7 @@ noBtn.addEventListener("click",moveNo);
 yesBtn.addEventListener("click",()=>{
     document.body.innerHTML=`
     <div class="success">
-        <h1>YAYYY! 💍❤️🎉</h1>
+        <h1>YAYYY!❤️❤️❤️</h1>
         <p>You just made me the happiest girl alive!</p>
     </div>`;
     confetti();

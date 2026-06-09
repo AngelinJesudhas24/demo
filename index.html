@@ -163,4 +163,95 @@ button{
 <!-- MAIN CARD -->
 <div class="card">
     <h1>Will You Marry Me? ❤️</h1>
-    <p>Every moment with you feels magical. Will you be mine
+    <p>Every moment with you feels magical. Will you be mine forever? 💕</p>
+    <button id="letterBtn">💌 Read My Letter</button>
+    <div class="buttons">
+        <button id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 😭</button>
+    </div>
+</div>
+
+<!-- LETTER POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2>💌 My Love</h2>
+        <p>
+            From the day you came into my life, everything became brighter.<br><br>
+            You are my happiness, my peace, and my forever.<br><br>
+            Will you make me the happiest girl in the world? ❤️
+        </p>
+        <button class="close" onclick="closeLetter()">Close</button>
+    </div>
+</div>
+
+<script>
+/* INTRO */
+const intro=document.getElementById("intro");
+const gift=document.querySelector(".gift");
+
+// Hide intro when clicking the gift
+gift.addEventListener("click", ()=>{
+    intro.style.display="none";
+});
+
+/* HEARTS */
+function createHeart(target=document.body){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*30)+"px";
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
+    target.appendChild(heart);
+    setTimeout(()=>{heart.remove();},10000);
+}
+
+// Hearts on intro page
+setInterval(()=>createHeart(intro),250);
+
+// Hearts on main page
+setInterval(()=>createHeart(document.body),250);
+
+/* LETTER */
+const popup=document.getElementById("popup");
+document.getElementById("letterBtn").onclick=()=>{popup.style.display="flex";};
+function closeLetter(){popup.style.display="none";}
+
+/* NO BUTTON */
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+let size=24;
+function moveNo(){
+    noBtn.style.left=Math.random()*(window.innerWidth-150)+"px";
+    noBtn.style.top=Math.random()*(window.innerHeight-100)+"px";
+    size+=4;
+    yesBtn.style.fontSize=size+"px";
+}
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("click",moveNo);
+
+/* YES BUTTON */
+yesBtn.addEventListener("click",()=>{
+    document.body.innerHTML=`
+    <div class="success">
+        <h1>YAYYY! ❤️❤️❤️</h1>
+        <p>You just made me the happiest girl alive!</p>
+    </div>`;
+    confetti();
+    setInterval(()=>createHeart(document.body),250); // floating hearts on success page
+});
+
+/* CONFETTI */
+function confetti(){
+    for(let i=0;i<300;i++){
+        const c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background="hsl("+Math.random()*360+",100%,50%)";
+        c.style.animation="fall "+(2+Math.random()*3)+"s linear";
+        document.body.appendChild(c);
+    }
+}
+</script>
+</body>
+</html>

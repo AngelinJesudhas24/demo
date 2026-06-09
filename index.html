@@ -189,17 +189,23 @@ setTimeout(()=>{
 },3000);
 
 /* HEARTS */
-function createHeart(){
+function createHeart(target=document.body){
     const heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤️";
     heart.style.left=Math.random()*100+"vw";
     heart.style.fontSize=(20+Math.random()*30)+"px";
     heart.style.animationDuration=(5+Math.random()*5)+"s";
-    document.body.appendChild(heart);
+    target.appendChild(heart);
     setTimeout(()=>{heart.remove();},10000);
 }
-setInterval(createHeart,250);
+
+// Hearts on intro page
+const intro=document.getElementById("intro");
+setInterval(()=>createHeart(intro),250);
+
+// Hearts on main page
+setInterval(()=>createHeart(document.body),250);
 
 /* LETTER */
 const popup=document.getElementById("popup");
@@ -227,7 +233,7 @@ yesBtn.addEventListener("click",()=>{
         <p>You just made me the happiest girl alive!</p>
     </div>`;
     confetti();
-    setInterval(createHeart,250); // floating hearts on success page
+    setInterval(()=>createHeart(document.body),250); // floating hearts on success page
 });
 
 /* CONFETTI */

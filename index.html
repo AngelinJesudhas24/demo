@@ -22,7 +22,7 @@ body{
     background:
     linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
     url('girl-proposing-bg.jpeg');
-    background-size:cover;
+    background-size:contain;   /* fit background image */
     background-position:center;
     background-repeat:no-repeat;
 }
@@ -129,7 +129,7 @@ button{
 /* SUCCESS */
 .success{
     position:fixed;inset:0;
-    background:url('success-bg.png') center/cover no-repeat;
+    background:url('success-bg.png') center/contain no-repeat; /* fit success background */
     display:flex;flex-direction:column;
     justify-content:center;align-items:center;
     color:white;z-index:9999;overflow:hidden;
@@ -233,7 +233,7 @@ noBtn.addEventListener("click",moveNo);
 yesBtn.addEventListener("click",()=>{
     document.body.innerHTML=`
     <div class="success">
-        <h1>YAYYY!❤️❤️❤️</h1>
+        <h1>YAYYY! ❤️❤️❤️</h1>
         <p>You just made me the happiest girl alive!</p>
     </div>`;
     confetti();
